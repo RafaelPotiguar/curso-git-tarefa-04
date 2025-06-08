@@ -1,11 +1,12 @@
-name: Deploy para GitHub Pages
+name: Verificar index.html antes do deploy
 
 on:
   push:
     branches:
       - main
+
 jobs:
-  deploy:
+  verificar-index:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,14 +19,3 @@ jobs:
             echo "Erro: public/index.html não encontrado!"
             exit 1
           fi
-
-      - name: Configurar Node.js (opcional)
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Publicar conteúdo da pasta public/ no GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
